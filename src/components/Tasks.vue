@@ -3,16 +3,20 @@
     <div class="task__box">
       <article class="task__item" :key="task.id" v-for="task of tasks">
         <header>
-          <h2 class="task__title">{{task.title}}</h2>
+          <h2 class="task__title">{{ task.title }}</h2>
           <div class="task__controll">
             <i class="task__icon">&#9776;</i>
             <div class="controll__list">
-              <span class="controll__item" @click="completeTask(task.id)">Concluir</span>
-              <span class="controll__item" @click="removeTask(task)">Excluir</span>
+              <span class="controll__item" @click="completeTask(task.id)"
+                >Concluir</span
+              >
+              <span class="controll__item" @click="removeTask(task)"
+                >Excluir</span
+              >
             </div>
           </div>
         </header>
-        <p class="task__description">{{task.description}}</p>
+        <p class="task__description">{{ task.description }}</p>
       </article>
     </div>
   </div>
@@ -22,8 +26,10 @@
 import { subject, filterTasks } from "../eventBus/main";
 import { mapState, mapActions } from "vuex";
 
-
 export default {
+  data: () => {
+    return {};
+  },
   mounted() {
     subject.subscribe(payload => {
       this.addTask(payload);
@@ -32,9 +38,6 @@ export default {
     filterTasks.subscribe(payload => {
       this.setTypeFilter(payload);
     });
-  },
-  data: () => {
-    return {};
   },
   computed: {
     ...mapState({
@@ -83,6 +86,12 @@ export default {
 </script>
 
 <style>
+.content {
+  display: block;
+  float: left;
+  width: 980px;
+  padding: 15px;
+}
 .task__box,
 .task__title,
 .task__description,
@@ -195,5 +204,62 @@ export default {
 .task__icon:hover + .controll__list,
 .controll__list:hover {
   display: block;
+}
+
+@media all and (max-width: 1180px) {
+}
+@media all and (max-width: 980px) {
+  .task__item {
+    width: calc(33.333% - 30px);
+    margin: 15px;
+  }
+  .task__item:nth-of-type(4n + 1) {
+    margin: 15px;
+  }
+  .task__item + .task__item {
+    margin: 15px;
+  }
+}
+@media all and (max-width: 780px) {
+  .task__item {
+    width: calc(50% - 30px);
+    margin: 15px;
+  }
+  .task__item:nth-of-type(4n + 1) {
+    margin: 15px;
+  }
+  .task__item + .task__item {
+    margin: 15px;
+  }
+}
+@media all and (max-width: 580px) {
+  .task__item {
+    width: calc(100% - 30px);
+    margin: 15px;
+  }
+  .task__item:nth-of-type(4n + 1) {
+    margin: 15px;
+  }
+  .task__item + .task__item {
+    margin: 15px;
+  }
+}
+
+@media all and (max-width: 479px) {
+  body::before {
+    content: "Para obter uma boa experiência utilize um dispositivo com resulução mínima de até 480px";
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 15px;
+    min-height: 45px;
+    line-height: 1.2em;
+    background: #f00;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 15000;
+  }
 }
 </style>

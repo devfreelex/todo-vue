@@ -14,3 +14,7 @@
     margin:0 auto;
     position: relative;
 }
+
+body {
+    min-width: 480px;
+}

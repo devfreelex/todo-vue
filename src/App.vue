@@ -1,40 +1,38 @@
 <template>
-<div>
-    <ToolBar/>
+  <div>
+    <ToolBar />
     <div class="container align--center">
-          <Register/>
-          <FilterTasks/>
-          <Tasks/>
+      <Register />
+      <FilterTasks />
+      <Tasks />
     </div>
-</div>
-
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
-import Tasks from './components/Tasks'
-import ToolBar from './components/ToolBar'
-import Register from './components/Register'
-import FilterTasks from './components/FilterTasks'
-import {getDataAndSync} from './helpers/dataSync'
+import Tasks from "./components/Tasks";
+import ToolBar from "./components/ToolBar";
+import Register from "./components/Register";
+import FilterTasks from "./components/FilterTasks";
 
 export default {
-  name: 'App',
+  name: "App",
   mounted() {
-    this.loadData(true)
+    this.loadData(true);
   },
   components: {
     Tasks,
     ToolBar,
     Register,
-    FilterTasks,
+    FilterTasks
   },
   methods: {
-    ...mapActions(['loadData'])
+    ...mapActions(["loadData"])
   },
-  data () {
-    return {}
+  data() {
+    return {};
   }
-}
+};
 </script>

@@ -1,15 +1,15 @@
 <template>
-  <div class="register" v-bind:class="{'is--visible': isFormActive}">
+  <div class="register" v-bind:class="{ 'is--visible': isFormActive }">
     <div class="content">
-      <Title/>
+      <Title :customtitle="title" />
       <form action class="register__form" @submit.prevent="addTask">
         <label class="form__label">
           <input
             type="text"
             class="form__input"
             v-model="task.title"
-            v-bind:class="{'has--value':task.title}"
-          >
+            v-bind:class="{ 'has--value': task.title }"
+          />
           <span class="form__span">Título</span>
           <i></i>
         </label>
@@ -19,14 +19,16 @@
             class="form__input"
             rows="6"
             v-model="task.description"
-            v-bind:class="{'has--value':task.description}"
+            v-bind:class="{ 'has--value': task.description }"
           ></textarea>
           <span class="form__span">Título</span>
           <i></i>
         </label>
         <label>
           <button type="submit" class="form__button btn--save">Salvar</button>
-          <button class="form__button btn--cancel" @click="hideForm">Cancelar</button>
+          <button class="form__button btn--cancel" @click="hideForm">
+            Cancelar
+          </button>
         </label>
       </form>
     </div>
@@ -34,24 +36,24 @@
 </template>
 
 <script>
-import { subject, formSubject } from "../eventBus/main";
+import { formSubject } from "../eventBus/main";
 
 import Title from "./Title";
-import {tasksRef} from "../db/firebase"
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
+  data: () => {
+    return {
+      task: {},
+      isFormActive: false,
+      title: "Tarefas Cadastradas"
+    };
+  },
   mounted() {
     formSubject.subscribe(stateForm => {
       this.showForm(stateForm);
     });
   },
-  data: () => {
-    return {
-      task: {},
-      isFormActive: false
-    };
-  }, 
   components: {
     Title
   },
@@ -65,16 +67,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['add']),
+    ...mapActions(["add"]),
     addTask(e) {
       e.preventDefault();
       if (!this.task.hasOwnProperty("title")) return;
 
-
       this.add(this.task);
       this.task = { title: "", description: "" };
       this.hideForm();
-
     },
     showForm(stateForm) {
       this.isFormActive = stateForm.isActive;
@@ -168,5 +168,3 @@ export default {
   color: #d81831;
 }
 </style>
-
-

@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import {formSubject} from '../eventBus/main'
+import { formSubject } from "../eventBus/main";
 
 export default {
   data: () => {
-    return {}
+    return {};
   },
   methods: {
-    showForm (e) {
-      formSubject.next({isActive: true})
+    showForm() {
+      formSubject.next({ isActive: true });
     }
   }
 };
@@ -72,4 +72,3 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 </style>
-

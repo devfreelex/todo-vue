@@ -1,22 +1,29 @@
 <template>
   <div class="content">
-    <Title class="title"/>
+    <Title :customtitle="title" class="title" />
     <div class="box__filter">
       <span class="filter__title">Filtrar por:</span>
 
       <span
         class="btn"
         @click="setType('complete')"
-        v-bind:class="{'is--active': showCompleted}"
-      >Feitas</span>
+        v-bind:class="{ 'is--active': showCompleted }"
+        >Feitas</span
+      >
 
       <span
         class="btn"
         @click="setType('notComplete')"
-        v-bind:class="{'is--active': showNotCompleted}"
-      >Pra fazer</span>
+        v-bind:class="{ 'is--active': showNotCompleted }"
+        >Pra fazer</span
+      >
 
-      <span class="btn" @click="setType('all')" v-bind:class="{'is--active': showAll}">Todas</span>
+      <span
+        class="btn"
+        @click="setType('all')"
+        v-bind:class="{ 'is--active': showAll }"
+        >Todas</span
+      >
     </div>
   </div>
 </template>
@@ -28,7 +35,9 @@ import { mapState } from "vuex";
 
 export default {
   data: () => {
-    return {};
+    return {
+      title: "Tarefas Cadastradas"
+    };
   },
   components: {
     Title
@@ -41,10 +50,10 @@ export default {
   computed: {
     ...mapState({
       showCompleted: state => {
-        if(state.typeFilter === "complete") return true
+        if (state.typeFilter === "complete") return true;
       },
       showNotCompleted: state => {
-        if(state.typeFilter === "notComplete") return true
+        if (state.typeFilter === "notComplete") return true;
       },
       showAll: state => {
         return state.typeFilter === "all" || state.typeFilter === null;
@@ -53,7 +62,7 @@ export default {
   }
 };
 </script>
-    
+
 <style scoped>
 .box__filter {
   display: block;
@@ -86,5 +95,3 @@ export default {
   border-left: 0;
 }
 </style>
-
-

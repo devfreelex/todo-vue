@@ -1,5 +1,4 @@
-
 export default {
-    tasks: [],
-    typeFilter: null
-}
+  tasks: [],
+  typeFilter: null
+};
