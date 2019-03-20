@@ -1,0 +1,16 @@
+.container,
+.content::before,
+.content::after {
+    display: block;
+    float: left;
+    width: 100%;
+    clear:both
+}
+
+.content {
+    display: block;
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    position: relative;
+}
